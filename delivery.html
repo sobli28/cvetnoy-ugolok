@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цветной уголок — Доставка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="images/logo.png" alt="Цветной уголок" class="logo-img"> Цветной уголок</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="delivery.html">Доставка</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-right">
+                <button class="profile-icon-btn" id="authIconBtn" aria-label="Профиль">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <a href="cart.html" class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container delivery-page">
+            <h1 class="page-title">Доставка и оплата</h1>
+            <div class="delivery-content">
+                <div class="delivery-section">
+                    <div class="section-icon">🚚</div>
+                    <h3>Доставка с любовью</h3>
+                    <p>Мы любим наших клиентов и хотим, чтобы цветы радовали вас как можно скорее! Доставка по Москве всего 300 рублей, а при заказе от 3000 рублей — совершенно бесплатно. Мы работаем каждый день с 9:00 до 21:00, и время доставки всегда согласовываем индивидуально. Хотите сюрприз для любимого? Мы можем доставить цветы в удобное время!</p>
+                </div>
+                <div class="delivery-section">
+                    <div class="section-icon">💳</div>
+                    <h3>Удобная оплата</h3>
+                    <p>Оплатите заказ онлайн прямо на сайте — безопасно и быстро! Или выберите оплату наличными курьеру при получении. Мы заботимся о вашей безопасности: все платежи защищены современными технологиями. Никаких скрытых комиссий — только честные цены!</p>
+                </div>
+                <div class="delivery-section">
+                    <div class="section-icon">⏰</div>
+                    <h3>Мы всегда на связи</h3>
+                    <p>Наш магазин открыт для вас круглосуточно! Принимаем заказы на сайте 24/7. Есть вопросы? Звоните или пишите — мы всегда рады помочь. Цветы — это эмоции, и мы хотим, чтобы ваш опыт был только положительным!</p>
+                </div>
+                <div class="delivery-section">
+                    <div class="section-icon">🌸</div>
+                    <h3>Особые пожелания</h3>
+                    <p>Хотите добавить открытку с теплыми словами? Или заказать цветы к определенному времени? Мы учтем все ваши пожелания! Каждый заказ — это возможность сделать кого-то счастливым, и мы гордимся тем, что помогаем в этом.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал (общий) -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>© 2026 Цветной уголок. Все права защищены.</p>
+            <div class="social">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/sonliiiiiiiiiiii" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно корзины (выезжающая панель) -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2>Корзина</h2>
+            <button class="close-cart" id="closeCart" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Сюда будут добавляться товары -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span class="total-price" id="cartTotal">0 ₽</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно оформления заказа -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal checkout-modal" id="checkoutModal">
+        <div class="modal-header">
+            <h3>Оформление заказа</h3>
+            <button class="close-modal" id="closeModal" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="checkoutForm">
+            <div class="form-group">
+                <label for="name">Имя *</label>
+                <input type="text" id="name" placeholder="Иван Иванов" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" placeholder="ivan@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Адрес доставки *</label>
+                <input type="text" id="address" placeholder="ул. Цветочная, д. 1" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Телефон *</label>
+                <input type="tel" id="phone" placeholder="+7 (999) 123-45-67" required>
+            </div>
+            <h4>Данные карты (имитация)</h4>
+            <div class="form-group">
+                <label for="cardNumber">Номер карты</label>
+                <input type="text" id="cardNumber" placeholder="**** **** **** ****">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="expiry">Срок</label>
+                    <input type="text" id="expiry" placeholder="ММ/ГГ">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="***">
+                </div>
+            </div>
+            <button type="submit" class="pay-btn">Оплатить</button>
+        </form>
+    </div>
+
+    <!-- Модальное окно успешного заказа -->
+    <div class="modal-overlay" id="successOverlay"></div>
+    <div class="modal success-modal" id="successModal">
+        <div class="modal-header">
+            <h3>Спасибо за заказ!</h3>
+            <button class="close-modal" id="closeSuccess" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <i class="fas fa-check-circle success-icon"></i>
+            <p>Ваш заказ успешно оформлен. Мы свяжемся с вами в ближайшее время.</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно авторизации с табами -->
+    <div class="modal-overlay" id="authOverlay"></div>
+    <div class="modal auth-modal-tabbed" id="authModal">
+        <div class="modal-header">
+            <button class="close-modal" id="closeAuth" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login" id="loginTab">Вход</button>
+            <button class="auth-tab" data-tab="register" id="registerTab">Регистрация</button>
+        </div>
+        
+        <div class="auth-content">
+            <!-- Форма входа -->
+            <form id="loginForm" class="auth-form active" data-form="login">
+                <div class="form-group">
+                    <label for="loginUsername">Имя пользователя</label>
+                    <input type="text" id="loginUsername" placeholder="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="auth-btn">Войти</button>
+            </form>
+            
+            <!-- Форма регистрации -->
+            <form id="registerForm" class="auth-form" data-form="register">
+                <div class="form-group">
+                    <label for="registerUsername">Имя пользователя</label>
+                    <input type="text" id="registerUsername" placeholder="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="user@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Пароль</label>
+                    <input type="password" id="registerPassword" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Подтвердите пароль</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

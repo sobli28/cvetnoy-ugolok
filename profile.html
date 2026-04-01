@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цветной уголок — Личный кабинет</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="images/logo.png" alt="Цветной уголок" class="logo-img"> Цветной уголок</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="delivery.html">Доставка</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-right">
+                <button class="profile-icon-btn" id="authIconBtn" aria-label="Профиль">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <a href="cart.html" class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="profile-header">
+                <h1 class="section-title">Личный кабинет</h1>
+                <button class="btn btn-outline" id="logoutBtn">Выйти</button>
+            </div>
+
+            <div class="profile-section">
+                <div class="profile-info">
+                    <h2>Информация о пользователе</h2>
+                    <div id="userDetails">
+                        <!-- User info will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="orders-section">
+                    <h2>История заказов</h2>
+                    <div id="ordersList">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>© 2026 Цветной уголок. Все права защищены.</p>
+            <div class="social">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/sonliiiiiiiiiiii" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals (same as index.html) -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2>Корзина</h2>
+            <button class="close-cart" id="closeCart" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span class="total-price" id="cartTotal">0 ₽</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal checkout-modal" id="checkoutModal">
+        <div class="modal-header">
+            <h3>Оформление заказа</h3>
+            <button class="close-modal" id="closeModal" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+        </div>
+        <form class="modal-body" id="checkoutForm">
+            <div class="form-group">
+                <label for="checkoutName">Имя</label>
+                <input type="text" id="checkoutName" required>
+            </div>
+            <div class="form-group">
+                <label for="checkoutEmail">Email</label>
+                <input type="email" id="checkoutEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="checkoutPhone">Телефон</label>
+                <input type="tel" id="checkoutPhone" required>
+            </div>
+            <div class="form-group">
+                <label for="checkoutAddress">Адрес доставки</label>
+                <textarea id="checkoutAddress" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Оформить заказ</button>
+        </form>
+    </div>
+
+    <!-- Модальное окно авторизации с табами -->
+    <div class="modal-overlay" id="authOverlay"></div>
+    <div class="modal auth-modal-tabbed" id="authModal">
+        <div class="modal-header">
+            <button class="close-modal" id="closeAuth" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login" id="loginTab">Вход</button>
+            <button class="auth-tab" data-tab="register" id="registerTab">Регистрация</button>
+        </div>
+        
+        <div class="auth-content">
+            <!-- Форма входа -->
+            <form id="loginForm" class="auth-form active" data-form="login">
+                <div class="form-group">
+                    <label for="loginUsername">Имя пользователя</label>
+                    <input type="text" id="loginUsername" placeholder="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="auth-btn">Войти</button>
+            </form>
+            
+            <!-- Форма регистрации -->
+            <form id="registerForm" class="auth-form" data-form="register">
+                <div class="form-group">
+                    <label for="registerUsername">Имя пользователя</label>
+                    <input type="text" id="registerUsername" placeholder="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="user@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Пароль</label>
+                    <input type="password" id="registerPassword" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Подтвердите пароль</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="successOverlay"></div>
+    <div class="modal success-modal" id="successModal">
+        <div class="modal-body success-body">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h3>Заказ оформлен!</h3>
+            <p>Мы свяжемся с вами в ближайшее время.</p>
+            <button class="btn btn-primary" id="closeSuccess">Продолжить покупки</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Profile specific functions
+        async function loadUserProfile() {
+            try {
+                const data = await apiRequest('/user');
+                const userDetails = document.getElementById('userDetails');
+                userDetails.innerHTML = `
+                    <p><strong>Имя пользователя:</strong> ${data.user.username}</p>
+                    <p><strong>Email:</strong> ${data.user.email}</p>
+                    <p><strong>Дата регистрации:</strong> ${new Date(data.user.created_at).toLocaleDateString('ru-RU')}</p>
+                `;
+            } catch (error) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        async function loadUserOrders() {
+            try {
+                const data = await apiRequest('/orders');
+                const ordersList = document.getElementById('ordersList');
+
+                if (data.orders.length === 0) {
+                    ordersList.innerHTML = '<p>У вас пока нет заказов.</p>';
+                    return;
+                }
+
+                ordersList.innerHTML = data.orders.map(order => `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <h3>Заказ #${order.id}</h3>
+                            <span class="order-status status-${order.status}">${order.status}</span>
+                        </div>
+                        <div class="order-details">
+                            <p><strong>Дата:</strong> ${new Date(order.created_at).toLocaleDateString('ru-RU')}</p>
+                            <p><strong>Сумма:</strong> ${order.total} ₽</p>
+                            <p><strong>Имя:</strong> ${order.name}</p>
+                            <p><strong>Email:</strong> ${order.email}</p>
+                            <p><strong>Телефон:</strong> ${order.phone}</p>
+                            <p><strong>Адрес:</strong> ${order.address}</p>
+                        </div>
+                        <div class="order-items">
+                            <h4>Товары:</h4>
+                            <ul>
+                                ${order.items.map(item => `<li>${item.name} - ${item.quantity} шт. x ${item.price} ₽</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                ordersList.innerHTML = '<p>Ошибка загрузки заказов.</p>';
+            }
+        }
+
+        // Initialize profile page
+        document.addEventListener('DOMContentLoaded', async () => {
+            await checkAuthStatus();
+            if (currentUser) {
+                await loadUserProfile();
+                await loadUserOrders();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
